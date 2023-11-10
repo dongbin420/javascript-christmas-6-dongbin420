@@ -28,6 +28,14 @@ class EventController {
 		const MENU_MESSAGE = this.calculator.createMenuMessage();
 
 		OutputView.printMenu(MENU_MESSAGE);
+
+		this.printTotalBeforeDiscount();
+	}
+
+	printTotalBeforeDiscount() {
+		const TOTAL_MESSAGE = this.calculator.createTotalBeforeDiscountMessage();
+
+		OutputView.printTotalBeforeDiscount(TOTAL_MESSAGE);
 	}
 }
 

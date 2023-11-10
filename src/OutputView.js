@@ -7,6 +7,11 @@ const OutputView = {
 		Console.print(menuMessage);
 		// ...
 	},
+
+	printTotalBeforeDiscount(totalMessage) {
+		Console.print(OUTPUT_MESSAGE.totalBeforeDiscount);
+		Console.print(totalMessage);
+	},
 	// ...
 };
 
