@@ -1,53 +1,53 @@
 import { UTIL_STRING, MENU, NUMBER } from './utils/constants.js';
 
 class Calculator {
-	constructor(menuInput) {
-		this.menuList = this.formatMenuInput(menuInput);
-	}
+  constructor(menuInput) {
+    this.menuList = this.formatMenuInput(menuInput);
+  }
 
-	formatMenuInput(menuInput) {
-		const MENU_LIST = {};
+  formatMenuInput(menuInput) {
+    const MENU_LIST = {};
 
-		menuInput.split(UTIL_STRING.comma).forEach((menuWithDash) => {
-			const [menu, quantity] = menuWithDash.split(UTIL_STRING.dash);
-			MENU_LIST[menu] = Number(quantity);
-		});
+    menuInput.split(UTIL_STRING.comma).forEach((menuWithDash) => {
+      const [menu, quantity] = menuWithDash.split(UTIL_STRING.dash);
+      MENU_LIST[menu] = Number(quantity);
+    });
 
-		return MENU_LIST;
-	}
+    return MENU_LIST;
+  }
 
-	createMenuMessage() {
-		let message = UTIL_STRING.empty;
+  createMenuMessage() {
+    let message = UTIL_STRING.empty;
 
-		Object.entries(this.menuList).forEach(([menu, quantity]) => {
-			message += `${menu} ${quantity}개${UTIL_STRING.lineBreak}`;
-		});
+    Object.entries(this.menuList).forEach(([menu, quantity]) => {
+      message += `${menu} ${quantity}개${UTIL_STRING.lineBreak}`;
+    });
 
-		return message;
-	}
+    return message;
+  }
 
-	createTotalBeforeDiscountMessage() {
-		let total = NUMBER.zero;
+  createTotalBeforeDiscountMessage() {
+    let total = NUMBER.zero;
 
-		Object.entries(this.menuList).forEach(([menu, quantity]) => {
-			const CATEGORY = this.getCategoryForMenu(menu);
-			total += MENU[CATEGORY][menu] * quantity;
-		});
+    Object.entries(this.menuList).forEach(([menu, quantity]) => {
+      const CATEGORY = this.getCategoryForMenu(menu);
+      total += MENU[CATEGORY][menu] * quantity;
+    });
 
-		const TOTAL_MESSAGE = `${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+    const TOTAL_MESSAGE = `${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
 
-		return TOTAL_MESSAGE;
-	}
+    return TOTAL_MESSAGE;
+  }
 
-	getCategoryForMenu(menu) {
-		let obtainedCategory = UTIL_STRING.empty;
-		Object.entries(MENU).forEach(([category, menuItems]) => {
-			if (menuItems[menu]) {
-				obtainedCategory = category;
-			}
-		});
-		return obtainedCategory;
-	}
+  getCategoryForMenu(menu) {
+    let obtainedCategory = UTIL_STRING.empty;
+    Object.entries(MENU).forEach(([category, menuItems]) => {
+      if (menuItems[menu]) {
+        obtainedCategory = category;
+      }
+    });
+    return obtainedCategory;
+  }
 }
 
 export default Calculator;
