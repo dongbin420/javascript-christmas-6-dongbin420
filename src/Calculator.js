@@ -43,7 +43,7 @@ class Calculator {
 		let obtainedCategory = UTIL_STRING.empty;
 		Object.entries(MENU).forEach(([category, menuItems]) => {
 			if (menuItems[menu]) {
-				categoryFound = category;
+				obtainedCategory = category;
 			}
 		});
 		return obtainedCategory;
