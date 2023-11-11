@@ -11,28 +11,15 @@ class EventController {
   }
 
   async start() {
-    await this.getDateInput();
-
-    await this.getMenuInput();
+    await this.getUserInput();
 
     this.setCalculator();
 
-    this.printMenu();
-
-    this.printTotalBeforeDiscount();
-
-    this.printReward();
-
-    this.printBenefit();
-
-    this.printTotalBenefit();
+    this.printAllOutputs();
   }
 
-  async getDateInput() {
+  async getUserInput() {
     this.dateInput = await InputView.readDate();
-  }
-
-  async getMenuInput() {
     this.menuInput = await InputView.readMenu();
   }
 
@@ -73,6 +60,14 @@ class EventController {
     const TOTAL_MESSAGE = MessageGenerator.createTotalBenefitMessage(TOTAL);
 
     OutputView.printTotalBenefit(TOTAL_MESSAGE);
+  }
+
+  printAllOutputs() {
+    this.printMenu();
+    this.printTotalBeforeDiscount();
+    this.printReward();
+    this.printBenefit();
+    this.printTotalBenefit();
   }
 }
 
