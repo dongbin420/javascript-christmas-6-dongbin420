@@ -1,4 +1,4 @@
-import { UTIL_STRING, MENU, NUMBER } from './utils/constants.js';
+import { UTIL_STRING, MENU, NUMBER, OTHER_MESSAGE } from './utils/constants.js';
 
 class Calculator {
   constructor(dateInput, menuInput) {
@@ -7,6 +7,7 @@ class Calculator {
     this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
     this.isReward = this.checkReward();
     this.dDayDiscount = this.calculateDdayEvent();
+    this.weekdayDiscount = this.calculateWeekdayEvent();
   }
 
   formatMenuInput(menuInput) {
@@ -62,6 +63,23 @@ class Calculator {
     }
 
     return NUMBER.zero;
+  }
+
+  calculateWeekdayEvent() {
+    const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
+    let discountAmount = NUMBER.zero;
+
+    if (DAY_OF_WEEK >= NUMBER.sunday && DAY_OF_WEEK <= NUMBER.thursday) {
+      Object.entries(this.menuList).forEach(([menu, quantity]) => {
+        const CATEGORY = this.findCategoryForMenu(menu);
+
+        if (CATEGORY === OTHER_MESSAGE.dessert) {
+          discountAmount += NUMBER.weekDayEventDiscount * quantity;
+        }
+      });
+    }
+
+    return discountAmount;
   }
 
   collectBenefits() {}

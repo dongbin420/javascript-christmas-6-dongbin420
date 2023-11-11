@@ -11,6 +11,10 @@ export const OUTPUT_MESSAGE = Object.freeze({
   none: '없음',
 });
 
+export const OTHER_MESSAGE = Object.freeze({
+  dessert: '디저트',
+})
+
 export const MENU = Object.freeze({
   애피타이저: { 양송이수프: 6000, 타파스: 5500, 시저샐러드: 8000 },
   메인: { 티본스테이크: 55000, 바비큐립: 54000, 해산물파스타: 35000, 크리스마스파스타: 25000 },
@@ -25,6 +29,10 @@ export const NUMBER = Object.freeze({
   eventStartDay: 1,
   dDayEventInitialDiscount: 1000,
   dDayEventIncreasePerDay: 100,
+  sunday: 0,
+  thursday: 4,
+  december: 11,
+  weekDayEventDiscount: 2023,
 });
 
 export const UTIL_STRING = Object.freeze({
