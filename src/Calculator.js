@@ -103,7 +103,9 @@ class Calculator {
   }
 
   calculateSpecialEvent() {
-    if (NUMBER.specialDayArr.some((day) => this.userDate === day)) {
+    const IS_EVENT_APPLY = NUMBER.specialDayArr.some((day) => this.userDate === day);
+
+    if (IS_EVENT_APPLY) {
       return NUMBER.specialDayDiscount;
     }
 
