@@ -5,11 +5,14 @@ import MessageGenerator from './MessageGenerator.js';
 
 class EventController {
   constructor() {
+    this.dateInput = null;
     this.menuInput = null;
     this.calculator = null;
   }
 
   async start() {
+    await this.getDateInput();
+
     await this.getMenuInput();
 
     this.setCalculator();
@@ -21,12 +24,16 @@ class EventController {
     this.printReward();
   }
 
+  async getDateInput() {
+    this.dateInput = await InputView.readDate();
+  }
+
   async getMenuInput() {
     this.menuInput = await InputView.readMenu();
   }
 
   setCalculator() {
-    this.calculator = new Calculator(this.menuInput);
+    this.calculator = new Calculator(this.dateInput, this.menuInput);
   }
 
   printMenu() {

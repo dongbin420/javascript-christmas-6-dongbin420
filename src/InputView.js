@@ -4,6 +4,8 @@ import { INPUT_MESSAGE } from './utils/constants.js';
 const InputView = {
   async readDate() {
     const input = await Console.readLineAsync(INPUT_MESSAGE.readDate);
+
+    return input;
     // ...
   },
 

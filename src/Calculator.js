@@ -1,7 +1,8 @@
 import { UTIL_STRING, MENU, NUMBER } from './utils/constants.js';
 
 class Calculator {
-  constructor(menuInput) {
+  constructor(dateInput, menuInput) {
+    this.userDate = Number(dateInput);
     this.menuList = this.formatMenuInput(menuInput);
     this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
     this.isReward = this.checkReward();
