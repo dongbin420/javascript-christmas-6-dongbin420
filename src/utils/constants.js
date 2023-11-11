@@ -7,8 +7,14 @@ export const OUTPUT_MESSAGE = Object.freeze({
   menu: '<주문 메뉴>',
   totalBeforeDiscount: '<할인 전 총주문 금액>',
   reward: '<증정 메뉴>',
+  benefit: '<혜택 내역>',
   champagne: '샴페인 1개',
   none: '없음',
+  dDayDiscount: '크리스마스 디데이 할인',
+  weekdayDiscount: '평일 할인',
+  weekendDiscount: '주말 할인',
+  specialDiscount: '특별 할인',
+  rewardEvent: '증정 이벤트',
 });
 
 export const OTHER_MESSAGE = Object.freeze({
@@ -39,6 +45,7 @@ export const NUMBER = Object.freeze({
   specialDayArr: [3, 10, 17, 24, 25, 31],
   specialDayDiscount: 1000,
   champagnePrice: 25000,
+  basePriceForAllEvent: 10000,
 });
 
 export const UTIL_STRING = Object.freeze({

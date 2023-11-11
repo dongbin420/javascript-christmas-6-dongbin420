@@ -1,4 +1,4 @@
-import { UTIL_STRING, MENU, NUMBER, OTHER_MESSAGE } from './utils/constants.js';
+import { UTIL_STRING, MENU, NUMBER, OTHER_MESSAGE, OUTPUT_MESSAGE } from './utils/constants.js';
 
 class Calculator {
   constructor(dateInput, menuInput) {
@@ -77,7 +77,7 @@ class Calculator {
         const CATEGORY = this.findCategoryForMenu(menu);
 
         if (CATEGORY === OTHER_MESSAGE.dessert) {
-          discountAmount += NUMBER.weekDayEventDiscount * quantity;
+          discountAmount += NUMBER.dayEventDiscount * quantity;
         }
       });
     }
@@ -118,7 +118,38 @@ class Calculator {
     return NUMBER.zero;
   }
 
-  collectBenefits() {}
+  checkBenefitCondition() {
+    const BENEFIT_PRICES = [
+      this.dDayDiscount,
+      this.weekdayDiscount,
+      this.weekendDiscount,
+      this.specialDayDiscount,
+      this.rewardDiscount,
+    ];
+    const ALL_ZERO = BENEFIT_PRICES.every((price) => price === 0);
+
+    const NOT_EVENT_ALLOWED = this.totalBeforeDiscount < NUMBER.basePriceForAllEvent || ALL_ZERO;
+
+    return NOT_EVENT_ALLOWED;
+  }
+
+  collectBenefits() {
+    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
+
+    if (NOT_EVENT_ALLOWED) {
+      return false;
+    }
+
+    const BENEFIT_LIST = {
+      [OUTPUT_MESSAGE.dDayDiscount]: this.dDayDiscount,
+      [OUTPUT_MESSAGE.weekdayDiscount]: this.weekdayDiscount,
+      [OUTPUT_MESSAGE.weekendDiscount]: this.weekendDiscount,
+      [OUTPUT_MESSAGE.specialDiscount]: this.specialDayDiscount,
+      [OUTPUT_MESSAGE.rewardEvent]: this.rewardDiscount,
+    };
+
+    return BENEFIT_LIST;
+  }
 
   getMenuList() {
     return this.menuList;
@@ -132,7 +163,11 @@ class Calculator {
     return this.isReward;
   }
 
-  getBenefits() {}
+  getBenefit() {
+    const BENEFIT_LIST = this.collectBenefits();
+
+    return BENEFIT_LIST;
+  }
 }
 
 export default Calculator;

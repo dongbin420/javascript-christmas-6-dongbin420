@@ -22,6 +22,8 @@ class EventController {
     this.printTotalBeforeDiscount();
 
     this.printReward();
+
+    this.printBenefit();
   }
 
   async getDateInput() {
@@ -57,7 +59,12 @@ class EventController {
     OutputView.printReward(REWARD_MESSAGE);
   }
 
-  printBenefit() {}
+  printBenefit() {
+    const BENEFIT_LIST = this.calculator.getBenefit();
+    const BENEFIT_MESSAGE = MessageGenerator.createBenefitMessage(BENEFIT_LIST);
+
+    OutputView.printBenefit(BENEFIT_MESSAGE);
+  }
 }
 
 export default EventController;

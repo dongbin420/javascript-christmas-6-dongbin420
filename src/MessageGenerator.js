@@ -1,4 +1,4 @@
-import { UTIL_STRING, OUTPUT_MESSAGE } from './utils/constants.js';
+import { UTIL_STRING, OUTPUT_MESSAGE, NUMBER } from './utils/constants.js';
 
 const MessageGenerator = {
   createMenuMessage(menuList) {
@@ -29,6 +29,24 @@ const MessageGenerator = {
     rewardMessage = `${OUTPUT_MESSAGE.none}${UTIL_STRING.lineBreak}`;
 
     return rewardMessage;
+  },
+
+  createBenefitMessage(benefitList) {
+    let benefitMessage = UTIL_STRING.empty;
+
+    if (!benefitList) {
+      benefitMessage = `${OUTPUT_MESSAGE.none}${UTIL_STRING.lineBreak}`;
+
+      return benefitMessage;
+    }
+
+    Object.entries(benefitList).forEach(([benefit, price]) => {
+      if (price !== NUMBER.zero) {
+        benefitMessage += `${benefit}: -${price.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+      }
+    });
+
+    return benefitMessage;
   },
 };
 

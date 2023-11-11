@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGE } from './utils/constants.js';
+import { OTHER_MESSAGE, OUTPUT_MESSAGE } from './utils/constants.js';
 
 const OutputView = {
   printMenu(menuMessage) {
@@ -16,6 +16,11 @@ const OutputView = {
   printReward(rewardMessage) {
     Console.print(OUTPUT_MESSAGE.reward);
     Console.print(rewardMessage);
+  },
+
+  printBenefit(benefitMessage) {
+    Console.print(OUTPUT_MESSAGE.benefit);
+    Console.print(benefitMessage);
   },
   // ...
 };
