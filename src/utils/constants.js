@@ -13,6 +13,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
 
 export const OTHER_MESSAGE = Object.freeze({
   dessert: '디저트',
+  mainMenu: '메인',
 })
 
 export const MENU = Object.freeze({
@@ -31,8 +32,10 @@ export const NUMBER = Object.freeze({
   dDayEventIncreasePerDay: 100,
   sunday: 0,
   thursday: 4,
+  friday: 5,
+  saturday: 6,
   december: 11,
-  weekDayEventDiscount: 2023,
+  dayEventDiscount: 2023,
 });
 
 export const UTIL_STRING = Object.freeze({

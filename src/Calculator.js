@@ -8,6 +8,7 @@ class Calculator {
     this.isReward = this.checkReward();
     this.dDayDiscount = this.calculateDdayEvent();
     this.weekdayDiscount = this.calculateWeekdayEvent();
+    this.weekendDiscount = this.calculateWeekendEvent();
   }
 
   formatMenuInput(menuInput) {
@@ -75,6 +76,23 @@ class Calculator {
 
         if (CATEGORY === OTHER_MESSAGE.dessert) {
           discountAmount += NUMBER.weekDayEventDiscount * quantity;
+        }
+      });
+    }
+
+    return discountAmount;
+  }
+
+  calculateWeekendEvent() {
+    const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
+    let discountAmount = NUMBER.zero;
+
+    if (DAY_OF_WEEK === NUMBER.friday || DAY_OF_WEEK === NUMBER.saturday) {
+      Object.entries(this.menuList).forEach(([menu, quantity]) => {
+        const CATEGORY = this.findCategoryForMenu(menu);
+
+        if (CATEGORY === OTHER_MESSAGE.mainMenu) {
+          discountAmount += NUMBER.dayEventDiscount * quantity;
         }
       });
     }
