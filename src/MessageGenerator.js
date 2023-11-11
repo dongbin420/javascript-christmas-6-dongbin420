@@ -1,4 +1,4 @@
-import { UTIL_STRING } from './utils/constants.js';
+import { UTIL_STRING, OUTPUT_MESSAGE } from './utils/constants.js';
 
 const MessageGenerator = {
   createMenuMessage(menuList) {
@@ -15,6 +15,20 @@ const MessageGenerator = {
     const TOTAL_MESSAGE = `${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
 
     return TOTAL_MESSAGE;
+  },
+
+  createRewardMessage(isReward) {
+    let rewardMessage = UTIL_STRING.empty;
+
+    if (isReward) {
+      rewardMessage = `${OUTPUT_MESSAGE.champagne}${UTIL_STRING.lineBreak}`;
+
+      return rewardMessage;
+    }
+
+    rewardMessage = `${OUTPUT_MESSAGE.none}${UTIL_STRING.lineBreak}`;
+
+    return rewardMessage;
   },
 };
 

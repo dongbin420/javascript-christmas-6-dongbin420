@@ -6,6 +6,9 @@ export const INPUT_MESSAGE = Object.freeze({
 export const OUTPUT_MESSAGE = Object.freeze({
   menu: '<주문 메뉴>',
   totalBeforeDiscount: '<할인 전 총주문 금액>',
+  reward: '<증정 메뉴>',
+  champagne: '샴페인 1개',
+  none: '없음',
 });
 
 export const MENU = Object.freeze({
@@ -17,6 +20,7 @@ export const MENU = Object.freeze({
 
 export const NUMBER = Object.freeze({
   zero: 0,
+  basePriceForReward: 120000,
 });
 
 export const UTIL_STRING = Object.freeze({

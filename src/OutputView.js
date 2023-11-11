@@ -12,6 +12,11 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.totalBeforeDiscount);
     Console.print(totalMessage);
   },
+
+  printReward(rewardMessage) {
+    Console.print(OUTPUT_MESSAGE.reward);
+    Console.print(rewardMessage);
+  },
   // ...
 };
 

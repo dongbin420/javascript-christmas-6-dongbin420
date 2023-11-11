@@ -4,6 +4,7 @@ class Calculator {
   constructor(menuInput) {
     this.menuList = this.formatMenuInput(menuInput);
     this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
+    this.isReward = this.checkReward();
   }
 
   formatMenuInput(menuInput) {
@@ -39,12 +40,24 @@ class Calculator {
     return obtainedCategory;
   }
 
+  checkReward() {
+    if (this.totalBeforeDiscount >= NUMBER.basePriceForReward) {
+      return true;
+    }
+
+    return false;
+  }
+
   getMenuList() {
     return this.menuList;
   }
 
   getTotalBeforeDiscount() {
     return this.totalBeforeDiscount;
+  }
+
+  getIsReward() {
+    return this.isReward;
   }
 }
 

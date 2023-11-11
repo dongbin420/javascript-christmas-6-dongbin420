@@ -17,6 +17,8 @@ class EventController {
     this.printMenu();
 
     this.printTotalBeforeDiscount();
+
+    this.printReward();
   }
 
   async getMenuInput() {
@@ -39,6 +41,13 @@ class EventController {
     const TOTAL_MESSAGE = MessageGenerator.createTotalBeforeDiscountMessage(TOTAL);
 
     OutputView.printTotalBeforeDiscount(TOTAL_MESSAGE);
+  }
+
+  printReward() {
+    const IS_REWARD = this.calculator.getIsReward();
+    const REWARD_MESSAGE = MessageGenerator.createRewardMessage(IS_REWARD);
+
+    OutputView.printReward(REWARD_MESSAGE);
   }
 }
 
