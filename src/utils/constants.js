@@ -21,6 +21,10 @@ export const MENU = Object.freeze({
 export const NUMBER = Object.freeze({
   zero: 0,
   basePriceForReward: 120000,
+  christmasDay: 25,
+  eventStartDay: 1,
+  dDayEventInitialDiscount: 1000,
+  dDayEventIncreasePerDay: 100,
 });
 
 export const UTIL_STRING = Object.freeze({

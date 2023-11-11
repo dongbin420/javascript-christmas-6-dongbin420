@@ -6,6 +6,7 @@ class Calculator {
     this.menuList = this.formatMenuInput(menuInput);
     this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
     this.isReward = this.checkReward();
+    this.dDayDiscount = this.calculateDdayEvent();
   }
 
   formatMenuInput(menuInput) {
@@ -49,6 +50,22 @@ class Calculator {
     return false;
   }
 
+  calculateDdayEvent() {
+    if (this.userDate <= NUMBER.christmasDay) {
+      const DAYS_SINCE_STRAT = this.userDate - NUMBER.eventStartDay;
+
+      // 문법 수정 필요
+      const DISCOUNT_AMOUNT =
+        NUMBER.dDayEventInitialDiscount + DAYS_SINCE_STRAT * NUMBER.dDayEventIncreasePerDay;
+
+      return DISCOUNT_AMOUNT;
+    }
+
+    return NUMBER.zero;
+  }
+
+  collectBenefits() {}
+
   getMenuList() {
     return this.menuList;
   }
@@ -60,6 +77,8 @@ class Calculator {
   getIsReward() {
     return this.isReward;
   }
+
+  getBenefits() {}
 }
 
 export default Calculator;

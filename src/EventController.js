@@ -56,6 +56,8 @@ class EventController {
 
     OutputView.printReward(REWARD_MESSAGE);
   }
+
+  printBenefit() {}
 }
 
 export default EventController;
