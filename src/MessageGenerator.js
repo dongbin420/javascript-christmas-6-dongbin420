@@ -54,6 +54,12 @@ const MessageGenerator = {
 
     return TOTAL_MESSAGE;
   },
+
+  createExpectedPaymentMessage(payment) {
+    const PAYMENT_MESSAGE = `${payment.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+
+    return PAYMENT_MESSAGE;
+  },
 };
 
 export default MessageGenerator;

@@ -9,6 +9,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
   reward: '<증정 메뉴>',
   benefit: '<혜택 내역>',
   totalBenefit: '<총혜택 금액>',
+  expectedPayment: '<할인 후 예상 결제 금액>',
   champagne: '샴페인 1개',
   none: '없음',
   dDayDiscount: '크리스마스 디데이 할인',

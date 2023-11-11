@@ -165,6 +165,18 @@ class Calculator {
     return TOTAL;
   }
 
+  calculateExpectedPayment() {
+    // 문법 수정 필요
+    const PAYMENT =
+      this.totalBeforeDiscount -
+      this.dDayDiscount -
+      this.weekdayDiscount -
+      this.weekendDiscount -
+      this.specialDayDiscount;
+
+    return PAYMENT;
+  }
+
   getMenuList() {
     return this.menuList;
   }
@@ -187,6 +199,12 @@ class Calculator {
     const TOTAL = this.calculateTotalBenefit();
 
     return TOTAL;
+  }
+
+  getExpectedPayment() {
+    const PAYMENT = this.calculateExpectedPayment();
+
+    return PAYMENT;
   }
 }
 

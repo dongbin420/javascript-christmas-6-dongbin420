@@ -27,6 +27,11 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.totalBenefit);
     Console.print(totalMessage);
   },
+
+  printExpectedPayment(paymentMessage) {
+    Console.print(OUTPUT_MESSAGE.expectedPayment);
+    Console.print(paymentMessage);
+  },
   // ...
 };
 

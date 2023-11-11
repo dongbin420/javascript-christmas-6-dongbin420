@@ -62,12 +62,20 @@ class EventController {
     OutputView.printTotalBenefit(TOTAL_MESSAGE);
   }
 
+  printExpectedPayment() {
+    const PAYMENT = this.calculator.getExpectedPayment();
+    const PAYMENT_MESSAGE = MessageGenerator.createExpectedPaymentMessage(PAYMENT);
+
+    OutputView.printExpectedPayment(PAYMENT_MESSAGE);
+  }
+
   printAllOutputs() {
     this.printMenu();
     this.printTotalBeforeDiscount();
     this.printReward();
     this.printBenefit();
     this.printTotalBenefit();
+    this.printExpectedPayment();
   }
 }
 
