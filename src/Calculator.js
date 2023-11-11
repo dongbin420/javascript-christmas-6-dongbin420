@@ -3,6 +3,7 @@ import { UTIL_STRING, MENU, NUMBER } from './utils/constants.js';
 class Calculator {
   constructor(menuInput) {
     this.menuList = this.formatMenuInput(menuInput);
+    this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
   }
 
   formatMenuInput(menuInput) {
@@ -16,37 +17,34 @@ class Calculator {
     return MENU_LIST;
   }
 
-  createMenuMessage() {
-    let message = UTIL_STRING.empty;
-
-    Object.entries(this.menuList).forEach(([menu, quantity]) => {
-      message += `${menu} ${quantity}개${UTIL_STRING.lineBreak}`;
-    });
-
-    return message;
-  }
-
-  createTotalBeforeDiscountMessage() {
+  formatTotalBeforeDiscount() {
     let total = NUMBER.zero;
 
     Object.entries(this.menuList).forEach(([menu, quantity]) => {
-      const CATEGORY = this.getCategoryForMenu(menu);
+      const CATEGORY = this.findCategoryForMenu(menu);
       total += MENU[CATEGORY][menu] * quantity;
     });
 
-    const TOTAL_MESSAGE = `${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
-
-    return TOTAL_MESSAGE;
+    return total;
   }
 
-  getCategoryForMenu(menu) {
+  findCategoryForMenu(menu) {
     let obtainedCategory = UTIL_STRING.empty;
     Object.entries(MENU).forEach(([category, menuItems]) => {
       if (menuItems[menu]) {
         obtainedCategory = category;
       }
     });
+
     return obtainedCategory;
+  }
+
+  getMenuList() {
+    return this.menuList;
+  }
+
+  getTotalBeforeDiscount() {
+    return this.totalBeforeDiscount;
   }
 }
 
