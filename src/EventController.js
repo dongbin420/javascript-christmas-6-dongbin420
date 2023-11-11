@@ -10,26 +10,26 @@ class EventController {
 
   async start() {
     await this.getMenuInput();
+
+    this.setCalculator();
+
+    this.printMenu();
+
+    this.printTotalBeforeDiscount();
   }
 
   async getMenuInput() {
     this.menuInput = await InputView.readMenu();
-
-    this.setCalculator();
   }
 
   setCalculator() {
     this.calculator = new Calculator(this.menuInput);
-
-    this.printMenu();
   }
 
   printMenu() {
     const MENU_MESSAGE = this.calculator.createMenuMessage();
 
     OutputView.printMenu(MENU_MESSAGE);
-
-    this.printTotalBeforeDiscount();
   }
 
   printTotalBeforeDiscount() {
