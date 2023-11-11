@@ -4,7 +4,7 @@ class Calculator {
   constructor(dateInput, menuInput) {
     this.userDate = Number(dateInput);
     this.menuList = this.formatMenuInput(menuInput);
-    this.totalBeforeDiscount = this.formatTotalBeforeDiscount();
+    this.totalBeforeDiscount = this.calculateTotalBeforeDiscount();
     this.isReward = this.checkReward();
     this.dDayDiscount = this.calculateDdayEvent();
     this.weekdayDiscount = this.calculateWeekdayEvent();
@@ -24,7 +24,7 @@ class Calculator {
     return MENU_LIST;
   }
 
-  formatTotalBeforeDiscount() {
+  calculateTotalBeforeDiscount() {
     let total = NUMBER.zero;
 
     Object.entries(this.menuList).forEach(([menu, quantity]) => {
