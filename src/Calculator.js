@@ -153,6 +153,18 @@ class Calculator {
     return BENEFIT_LIST;
   }
 
+  calculateTotalBenefit() {
+    // 문법 수정 필요
+    const TOTAL =
+      this.dDayDiscount +
+      this.weekdayDiscount +
+      this.weekendDiscount +
+      this.specialDayDiscount +
+      this.rewardDiscount;
+
+    return TOTAL;
+  }
+
   getMenuList() {
     return this.menuList;
   }
@@ -169,6 +181,12 @@ class Calculator {
     const BENEFIT_LIST = this.collectBenefits();
 
     return BENEFIT_LIST;
+  }
+
+  getTotalBenefit() {
+    const TOTAL = this.calculateTotalBenefit();
+
+    return TOTAL;
   }
 }
 

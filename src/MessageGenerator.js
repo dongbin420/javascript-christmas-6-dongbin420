@@ -48,6 +48,12 @@ const MessageGenerator = {
 
     return benefitMessage;
   },
+
+  createTotalBenefitMessage(total) {
+    const TOTAL_MESSAGE = `-${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+
+    return TOTAL_MESSAGE;
+  },
 };
 
 export default MessageGenerator;

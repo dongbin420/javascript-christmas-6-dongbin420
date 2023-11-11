@@ -24,6 +24,8 @@ class EventController {
     this.printReward();
 
     this.printBenefit();
+
+    this.printTotalBenefit();
   }
 
   async getDateInput() {
@@ -64,6 +66,13 @@ class EventController {
     const BENEFIT_MESSAGE = MessageGenerator.createBenefitMessage(BENEFIT_LIST);
 
     OutputView.printBenefit(BENEFIT_MESSAGE);
+  }
+
+  printTotalBenefit() {
+    const TOTAL = this.calculator.getTotalBenefit();
+    const TOTAL_MESSAGE = MessageGenerator.createTotalBenefitMessage(TOTAL);
+
+    OutputView.printTotalBenefit(TOTAL_MESSAGE);
   }
 }
 
