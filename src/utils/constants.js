@@ -14,7 +14,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
 export const OTHER_MESSAGE = Object.freeze({
   dessert: '디저트',
   mainMenu: '메인',
-})
+});
 
 export const MENU = Object.freeze({
   애피타이저: { 양송이수프: 6000, 타파스: 5500, 시저샐러드: 8000 },
@@ -36,6 +36,8 @@ export const NUMBER = Object.freeze({
   saturday: 6,
   december: 11,
   dayEventDiscount: 2023,
+  specialDayArr: [3, 10, 17, 24, 25, 31],
+  specialDayDiscount: 1000,
 });
 
 export const UTIL_STRING = Object.freeze({

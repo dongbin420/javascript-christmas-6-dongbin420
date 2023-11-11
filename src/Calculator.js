@@ -9,6 +9,7 @@ class Calculator {
     this.dDayDiscount = this.calculateDdayEvent();
     this.weekdayDiscount = this.calculateWeekdayEvent();
     this.weekendDiscount = this.calculateWeekendEvent();
+    this.specialDayDiscount = this.calculateSpecialEvent();
   }
 
   formatMenuInput(menuInput) {
@@ -98,6 +99,14 @@ class Calculator {
     }
 
     return discountAmount;
+  }
+
+  calculateSpecialEvent() {
+    if (NUMBER.specialDayArr.some((day) => this.userDate === day)) {
+      return NUMBER.specialDayDiscount;
+    }
+
+    return NUMBER.zero;
   }
 
   collectBenefits() {}
