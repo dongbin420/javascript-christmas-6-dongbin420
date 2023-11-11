@@ -38,6 +38,7 @@ export const NUMBER = Object.freeze({
   dayEventDiscount: 2023,
   specialDayArr: [3, 10, 17, 24, 25, 31],
   specialDayDiscount: 1000,
+  champagnePrice: 25000,
 });
 
 export const UTIL_STRING = Object.freeze({

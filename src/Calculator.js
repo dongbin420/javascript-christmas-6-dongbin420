@@ -10,6 +10,7 @@ class Calculator {
     this.weekdayDiscount = this.calculateWeekdayEvent();
     this.weekendDiscount = this.calculateWeekendEvent();
     this.specialDayDiscount = this.calculateSpecialEvent();
+    this.rewardDiscount = this.calculateRewardEvent();
   }
 
   formatMenuInput(menuInput) {
@@ -104,6 +105,14 @@ class Calculator {
   calculateSpecialEvent() {
     if (NUMBER.specialDayArr.some((day) => this.userDate === day)) {
       return NUMBER.specialDayDiscount;
+    }
+
+    return NUMBER.zero;
+  }
+
+  calculateRewardEvent() {
+    if (this.isReward) {
+      return NUMBER.champagnePrice;
     }
 
     return NUMBER.zero;
