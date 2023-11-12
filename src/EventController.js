@@ -11,11 +11,15 @@ class EventController {
   }
 
   async start() {
+    OutputView.printIntro();
+
     await this.getUserInput();
+
+    OutputView.printSecondIntro();
 
     this.setCalculator();
 
-    this.printAllOutputs();
+    this.printResult();
   }
 
   async getUserInput() {
@@ -75,7 +79,7 @@ class EventController {
     OutputView.printBadge(BADGE);
   }
 
-  printAllOutputs() {
+  printResult() {
     this.printMenu();
     this.printTotalBeforeDiscount();
     this.printReward();

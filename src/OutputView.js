@@ -1,7 +1,15 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OTHER_MESSAGE, OUTPUT_MESSAGE } from './utils/constants.js';
+import { OUTPUT_MESSAGE } from './utils/constants.js';
 
 const OutputView = {
+  printIntro() {
+    Console.print(OUTPUT_MESSAGE.intro);
+  },
+
+  printSecondIntro() {
+    Console.print(OUTPUT_MESSAGE.secondIntro);
+  },
+
   printMenu(menuMessage) {
     Console.print(OUTPUT_MESSAGE.menu);
     Console.print(menuMessage);
