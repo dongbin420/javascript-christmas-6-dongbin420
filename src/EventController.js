@@ -69,6 +69,12 @@ class EventController {
     OutputView.printExpectedPayment(PAYMENT_MESSAGE);
   }
 
+  printBadge() {
+    const BADGE = this.calculator.calculateBadgeEvent();
+
+    OutputView.printBadge(BADGE);
+  }
+
   printAllOutputs() {
     this.printMenu();
     this.printTotalBeforeDiscount();
@@ -76,6 +82,7 @@ class EventController {
     this.printBenefit();
     this.printTotalBenefit();
     this.printExpectedPayment();
+    this.printBadge();
   }
 }
 

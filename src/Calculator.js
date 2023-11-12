@@ -11,6 +11,7 @@ class Calculator {
     this.weekendDiscount = this.calculateWeekendEvent();
     this.specialDayDiscount = this.calculateSpecialEvent();
     this.rewardDiscount = this.calculateRewardEvent();
+    this.totalBenefit = this.calculateTotalBenefit();
   }
 
   formatMenuInput(menuInput) {
@@ -154,6 +155,12 @@ class Calculator {
   }
 
   calculateTotalBenefit() {
+    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
+
+    if (NOT_EVENT_ALLOWED) {
+      return NUMBER.zero;
+    }
+
     // 문법 수정 필요
     const TOTAL =
       this.dDayDiscount +
@@ -166,6 +173,12 @@ class Calculator {
   }
 
   calculateExpectedPayment() {
+    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
+
+    if (NOT_EVENT_ALLOWED) {
+      return this.totalBeforeDiscount;
+    }
+
     // 문법 수정 필요
     const PAYMENT =
       this.totalBeforeDiscount -
@@ -175,6 +188,22 @@ class Calculator {
       this.specialDayDiscount;
 
     return PAYMENT;
+  }
+
+  calculateBadgeEvent() {
+    if (this.totalBenefit >= NUMBER.basePriceForSanta) {
+      return OUTPUT_MESSAGE.santa;
+    }
+
+    if (this.totalBenefit >= NUMBER.basePriceForTree) {
+      return OUTPUT_MESSAGE.tree;
+    }
+
+    if (this.totalBenefit >= NUMBER.basePriceForStar) {
+      return OUTPUT_MESSAGE.star;
+    }
+
+    return OUTPUT_MESSAGE.none;
   }
 
   getMenuList() {
@@ -196,15 +225,19 @@ class Calculator {
   }
 
   getTotalBenefit() {
-    const TOTAL = this.calculateTotalBenefit();
-
-    return TOTAL;
+    return this.totalBenefit;
   }
 
   getExpectedPayment() {
     const PAYMENT = this.calculateExpectedPayment();
 
     return PAYMENT;
+  }
+
+  getBadge() {
+    const BADGE = this.calculateBadgeEvent();
+
+    return BADGE;
   }
 }
 

@@ -50,9 +50,17 @@ const MessageGenerator = {
   },
 
   createTotalBenefitMessage(total) {
-    const TOTAL_MESSAGE = `-${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+    let totalMessage = UTIL_STRING.empty;
 
-    return TOTAL_MESSAGE;
+    if (total === NUMBER.zero) {
+      totalMessage = `${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+
+      return totalMessage;
+    }
+
+    totalMessage = `-${total.toLocaleString()}원${UTIL_STRING.lineBreak}`;
+
+    return totalMessage;
   },
 
   createExpectedPaymentMessage(payment) {
