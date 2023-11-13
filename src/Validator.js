@@ -27,7 +27,10 @@ const Validator = {
     Validator.validateFormat(CONVERTED_INPUT);
 
     const MENU_ITSELF = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[0]);
+    const QUANTITY_ITSELF = CONVERTED_INPUT.map((menuAndQuan) => Number(menuAndQuan[1]));
+
     Validator.validateMenu(MENU_ITSELF);
+    Validator.validateQuantity(QUANTITY_ITSELF);
   },
 
   validateFormat(convertedInput) {
@@ -59,6 +62,30 @@ const Validator = {
 
     if (IS_ALL_DRINK) {
       throw new Error(ERROR_MESSAGE.drink);
+    }
+
+    return;
+  },
+
+  validateQuantity(quantity) {
+    for (let j = 0; j < quantity.length; j++) {
+      if (Number.isNaN(quantity[j])) {
+        throw new Error(ERROR_MESSAGE.order);
+      }
+
+      if (quantity[j] < 1) {
+        throw new Error(ERROR_MESSAGE.order);
+      }
+
+      if (!Number.isInteger(quantity[j])) {
+        throw new Error(ERROR_MESSAGE.order);
+      }
+    }
+
+    const ALL_MENU_QUANTITY = quantity.reduce((acc, cur) => acc + cur);
+
+    if (ALL_MENU_QUANTITY > 20) {
+      throw new Error(ERROR_MESSAGE.quantity);
     }
 
     return;
