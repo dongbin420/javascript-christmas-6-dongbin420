@@ -62,23 +62,17 @@ const Validator = {
   },
 
   validateQuantity(quantities) {
+    let totalQuantity = 0;
+
     for (let j = 0; j < quantities.length; j++) {
-      if (Number.isNaN(quantities[j])) {
+      if (Number.isNaN(quantities[j]) || quantities[j] < 1 || !Number.isInteger(quantities[j])) {
         throw new Error(ERROR_MESSAGE.order);
       }
 
-      if (quantities[j] < 1) {
-        throw new Error(ERROR_MESSAGE.order);
-      }
-
-      if (!Number.isInteger(quantities[j])) {
-        throw new Error(ERROR_MESSAGE.order);
-      }
+      totalQuantity += quantities[j];
     }
 
-    const TOTAL_QUANTITY = quantities.reduce((acc, cur) => acc + cur);
-
-    if (TOTAL_QUANTITY > 20) {
+    if (totalQuantity > 20) {
       throw new Error(ERROR_MESSAGE.quantity);
     }
   },
