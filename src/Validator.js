@@ -43,18 +43,12 @@ const Validator = {
     const IS_MENU = menus.every((menu) => {
       return Object.values(MENU).some((category) => Object.hasOwn(category, menu));
     });
-
-    if (!IS_MENU) {
-      throw new Error(ERROR_MESSAGE.order);
-    }
-
     const IS_DUPLICATED = new Set(menus).size !== menus.length;
+    const IS_ALL_DRINK = menus.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
 
-    if (IS_DUPLICATED) {
+    if (!IS_MENU || IS_DUPLICATED) {
       throw new Error(ERROR_MESSAGE.order);
     }
-
-    const IS_ALL_DRINK = menus.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
 
     if (IS_ALL_DRINK) {
       throw new Error(ERROR_MESSAGE.drink);
