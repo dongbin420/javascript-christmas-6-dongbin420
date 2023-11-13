@@ -5,6 +5,7 @@ class Calculator {
     this.userDate = Number(dateInput);
     this.menuList = this.formatMenuInput(menuInput);
     this.totalBeforeDiscount = this.calculateTotalBeforeDiscount();
+    this.isNotEventAllowed = this.checkEventCondition();
     this.isReward = this.checkReward();
     this.dDayDiscount = this.calculateDdayEvent();
     this.weekdayDiscount = this.calculateWeekdayEvent();
@@ -47,6 +48,12 @@ class Calculator {
     return obtainedCategory;
   }
 
+  checkEventCondition() {
+    const NOT_EVENT_ALLOWED = this.totalBeforeDiscount < NUMBER.basePriceForAllEvent;
+
+    return NOT_EVENT_ALLOWED;
+  }
+
   checkReward() {
     if (this.totalBeforeDiscount >= NUMBER.basePriceForReward) {
       return true;
@@ -56,6 +63,10 @@ class Calculator {
   }
 
   calculateDdayEvent() {
+    if (this.isNotEventAllowed) {
+      return NUMBER.zero;
+    }
+
     if (this.userDate <= NUMBER.christmasDay) {
       const DAYS_SINCE_STRAT = this.userDate - NUMBER.eventStartDay;
 
@@ -70,6 +81,10 @@ class Calculator {
   }
 
   calculateWeekdayEvent() {
+    if (this.isNotEventAllowed) {
+      return NUMBER.zero;
+    }
+
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
@@ -87,6 +102,10 @@ class Calculator {
   }
 
   calculateWeekendEvent() {
+    if (this.isNotEventAllowed) {
+      return NUMBER.zero;
+    }
+
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
@@ -104,6 +123,10 @@ class Calculator {
   }
 
   calculateSpecialEvent() {
+    if (this.isNotEventAllowed) {
+      return NUMBER.zero;
+    }
+
     const IS_EVENT_APPLY = NUMBER.specialDayArr.some((day) => this.userDate === day);
 
     if (IS_EVENT_APPLY) {
@@ -121,25 +144,8 @@ class Calculator {
     return NUMBER.zero;
   }
 
-  checkBenefitCondition() {
-    const BENEFIT_PRICES = [
-      this.dDayDiscount,
-      this.weekdayDiscount,
-      this.weekendDiscount,
-      this.specialDayDiscount,
-      this.rewardDiscount,
-    ];
-    const ALL_ZERO = BENEFIT_PRICES.every((price) => price === 0);
-
-    const NOT_EVENT_ALLOWED = this.totalBeforeDiscount < NUMBER.basePriceForAllEvent || ALL_ZERO;
-
-    return NOT_EVENT_ALLOWED;
-  }
-
   collectBenefits() {
-    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
-
-    if (NOT_EVENT_ALLOWED) {
+    if (this.totalBenefit === 0) {
       return false;
     }
 
@@ -155,12 +161,6 @@ class Calculator {
   }
 
   calculateTotalBenefit() {
-    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
-
-    if (NOT_EVENT_ALLOWED) {
-      return NUMBER.zero;
-    }
-
     // 문법 수정 필요
     const TOTAL =
       this.dDayDiscount +
@@ -173,12 +173,6 @@ class Calculator {
   }
 
   calculateExpectedPayment() {
-    const NOT_EVENT_ALLOWED = this.checkBenefitCondition();
-
-    if (NOT_EVENT_ALLOWED) {
-      return this.totalBeforeDiscount;
-    }
-
     // 문법 수정 필요
     const PAYMENT =
       this.totalBeforeDiscount -
