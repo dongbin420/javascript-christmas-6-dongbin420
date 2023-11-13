@@ -22,12 +22,13 @@ const Validator = {
   validateDate(dateInput) {
     const CONVERTED_INPUT = Number(dateInput);
 
-    if (Number.isNaN(CONVERTED_INPUT) || CONVERTED_INPUT < 1 || CONVERTED_INPUT > 31) {
+    if (
+    Number.isNaN(CONVERTED_INPUT) 
+    || CONVERTED_INPUT < 1 
+    || CONVERTED_INPUT > 31
+    || !Number.isInteger(CONVERTED_INPUT)
+    ) {
       throw new Error(ERROR_MESSAGE.date);
-    }
-
-    if (!Number.isInteger(CONVERTED_INPUT)) {
-      throw new Error(ERROR_MESSAGE.dateInteger);
     }
   },
 
@@ -59,7 +60,11 @@ const Validator = {
     let totalQuantity = 0;
 
     for (let j = 0; j < quantities.length; j++) {
-      if (Number.isNaN(quantities[j]) || quantities[j] < 1 || !Number.isInteger(quantities[j])) {
+      if (
+        Number.isNaN(quantities[j]) 
+        || quantities[j] < 1 
+        || !Number.isInteger(quantities[j])
+      ) {
         throw new Error(ERROR_MESSAGE.order);
       }
 

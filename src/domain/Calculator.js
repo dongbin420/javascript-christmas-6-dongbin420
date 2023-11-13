@@ -88,7 +88,7 @@ class Calculator {
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
-    if (DAY_OF_WEEK >= NUMBER.sunday && DAY_OF_WEEK <= NUMBER.thursday) {
+    if ((DAY_OF_WEEK >= NUMBER.sunday) && (DAY_OF_WEEK <= NUMBER.thursday)) {
       Object.entries(this.menuList).forEach(([menu, quantity]) => {
         const CATEGORY = this.findCategoryForMenu(menu);
 
@@ -109,7 +109,7 @@ class Calculator {
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
-    if (DAY_OF_WEEK === NUMBER.friday || DAY_OF_WEEK === NUMBER.saturday) {
+    if ((DAY_OF_WEEK === NUMBER.friday) || (DAY_OF_WEEK === NUMBER.saturday)) {
       Object.entries(this.menuList).forEach(([menu, quantity]) => {
         const CATEGORY = this.findCategoryForMenu(menu);
 
