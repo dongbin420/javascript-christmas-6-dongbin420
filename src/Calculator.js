@@ -206,38 +206,24 @@ class Calculator {
     return OUTPUT_MESSAGE.none;
   }
 
-  getMenuList() {
-    return this.menuList;
-  }
-
-  getTotalBeforeDiscount() {
-    return this.totalBeforeDiscount;
-  }
-
-  getIsReward() {
-    return this.isReward;
-  }
-
-  getBenefit() {
+  getEvent() {
+    const MENU_LIST = this.menuList;
+    const TOTAL_BEFORE_DISCOUNT = this.totalBeforeDiscount;
+    const IS_REWARD = this.isReward;
     const BENEFIT_LIST = this.collectBenefits();
-
-    return BENEFIT_LIST;
-  }
-
-  getTotalBenefit() {
-    return this.totalBenefit;
-  }
-
-  getExpectedPayment() {
+    const TOTAL_BENEFIT = this.totalBenefit;
     const PAYMENT = this.calculateExpectedPayment();
-
-    return PAYMENT;
-  }
-
-  getBadge() {
     const BADGE = this.calculateBadgeEvent();
 
-    return BADGE;
+    return {
+      MENU_LIST,
+      TOTAL_BEFORE_DISCOUNT,
+      IS_REWARD,
+      BENEFIT_LIST,
+      TOTAL_BENEFIT,
+      PAYMENT,
+      BADGE,
+    };
   }
 }
 
