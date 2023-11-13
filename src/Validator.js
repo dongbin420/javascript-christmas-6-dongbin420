@@ -12,29 +12,23 @@ const Validator = {
 
     Validator.validateFormat(CONVERTED_INPUT);
 
-    const MENU_ITSELF = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[0]);
-    const QUANTITY_ITSELF = CONVERTED_INPUT.map((menuAndQuan) => Number(menuAndQuan[1]));
+    const QUANTITIES = CONVERTED_INPUT.map((menuAndQuan) => Number(menuAndQuan[1]));
+    const MENUS = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[0]);
 
-    Validator.validateMenu(MENU_ITSELF);
-    Validator.validateQuantity(QUANTITY_ITSELF);
+    Validator.validateQuantity(QUANTITIES);
+    Validator.validateMenu(MENUS);
   },
 
   validateDate(dateInput) {
     const CONVERTED_INPUT = Number(dateInput);
 
-    if (Number.isNaN(CONVERTED_INPUT)) {
-      throw new Error(ERROR_MESSAGE.date);
-    }
-
-    if (CONVERTED_INPUT < 1 || CONVERTED_INPUT > 31) {
+    if (Number.isNaN(CONVERTED_INPUT) || CONVERTED_INPUT < 1 || CONVERTED_INPUT > 31) {
       throw new Error(ERROR_MESSAGE.date);
     }
 
     if (!Number.isInteger(CONVERTED_INPUT)) {
       throw new Error(ERROR_MESSAGE.dateInteger);
     }
-
-    return;
   },
 
   validateFormat(convertedInput) {
@@ -43,12 +37,10 @@ const Validator = {
         throw new Error(ERROR_MESSAGE.order);
       }
     }
-
-    return;
   },
 
-  validateMenu(menu) {
-    const IS_MENU = menu.every((menu) => {
+  validateMenu(menus) {
+    const IS_MENU = menus.every((menu) => {
       return Object.values(MENU).some((category) => Object.hasOwn(category, menu));
     });
 
@@ -56,43 +48,39 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.order);
     }
 
-    const IS_DUPLICATED = new Set(menu).size !== menu.length;
+    const IS_DUPLICATED = new Set(menus).size !== menus.length;
 
     if (IS_DUPLICATED) {
       throw new Error(ERROR_MESSAGE.order);
     }
 
-    const IS_ALL_DRINK = menu.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
+    const IS_ALL_DRINK = menus.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
 
     if (IS_ALL_DRINK) {
       throw new Error(ERROR_MESSAGE.drink);
     }
-
-    return;
   },
 
-  validateQuantity(quantity) {
-    for (let j = 0; j < quantity.length; j++) {
-      if (Number.isNaN(quantity[j])) {
+  validateQuantity(quantities) {
+    for (let j = 0; j < quantities.length; j++) {
+      if (Number.isNaN(quantities[j])) {
         throw new Error(ERROR_MESSAGE.order);
       }
 
-      if (quantity[j] < 1) {
+      if (quantities[j] < 1) {
         throw new Error(ERROR_MESSAGE.order);
       }
 
-      if (!Number.isInteger(quantity[j])) {
+      if (!Number.isInteger(quantities[j])) {
         throw new Error(ERROR_MESSAGE.order);
       }
     }
 
-    const ALL_MENU_QUANTITY = quantity.reduce((acc, cur) => acc + cur);
+    const TOTAL_QUANTITY = quantities.reduce((acc, cur) => acc + cur);
 
-    if (ALL_MENU_QUANTITY > 20) {
+    if (TOTAL_QUANTITY > 20) {
       throw new Error(ERROR_MESSAGE.quantity);
     }
-
-    return;
   },
 };
 export default Validator;
