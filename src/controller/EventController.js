@@ -1,7 +1,7 @@
-import InputView from './InputView.js';
-import OutputView from './OutputView.js';
-import Calculator from './Calculator.js';
-import MessageGenerator from './MessageGenerator.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
+import Calculator from '../domain/Calculator.js';
+import MessageGenerator from '../MessageGenerator.js';
 
 class EventController {
   constructor() {

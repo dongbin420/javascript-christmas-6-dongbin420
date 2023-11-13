@@ -1,4 +1,4 @@
-import EventController from './EventController.js';
+import EventController from "./controller/EventController.js";
 
 class App {
   async run() {

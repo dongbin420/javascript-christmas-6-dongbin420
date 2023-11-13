@@ -1,4 +1,4 @@
-import { UTIL_STRING, MENU, NUMBER, OTHER_MESSAGE, OUTPUT_MESSAGE } from './utils/constants.js';
+import { UTIL_STRING, MENU, NUMBER, OTHER_MESSAGE, OUTPUT_MESSAGE } from '../utils/constants.js';
 
 class Calculator {
   constructor(dateInput, menuInput) {

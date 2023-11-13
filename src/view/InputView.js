@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
-import { INPUT_MESSAGE } from './utils/constants.js';
-import Validator from './Validator.js';
+import { INPUT_MESSAGE } from '../utils/constants.js';
+import Validator from '../Validator.js';
 
 const InputView = {
   async readDate() {
