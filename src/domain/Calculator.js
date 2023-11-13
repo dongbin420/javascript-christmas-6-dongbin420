@@ -81,10 +81,6 @@ class Calculator {
   }
 
   calculateWeekdayEvent() {
-    if (this.isNotEventAllowed) {
-      return NUMBER.zero;
-    }
-
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
@@ -102,10 +98,6 @@ class Calculator {
   }
 
   calculateWeekendEvent() {
-    if (this.isNotEventAllowed) {
-      return NUMBER.zero;
-    }
-
     const DAY_OF_WEEK = new Date(2023, NUMBER.december, this.userDate).getDay();
     let discountAmount = NUMBER.zero;
 
@@ -145,7 +137,7 @@ class Calculator {
   }
 
   collectBenefits() {
-    if (this.totalBenefit === 0) {
+    if (this.totalBenefit === 0 || this.isNotEventAllowed) {
       return false;
     }
 
@@ -161,6 +153,10 @@ class Calculator {
   }
 
   calculateTotalBenefit() {
+    if (this.isNotEventAllowed) {
+      return NUMBER.zero;
+    }
+
     const TOTAL =
       this.dDayDiscount +
       this.weekdayDiscount +
@@ -172,12 +168,7 @@ class Calculator {
   }
 
   calculateExpectedPayment() {
-    const PAYMENT =
-      this.totalBeforeDiscount -
-      this.dDayDiscount -
-      this.weekdayDiscount -
-      this.weekendDiscount -
-      this.specialDayDiscount;
+    const PAYMENT = this.totalBeforeDiscount - this.totalBenefit + this.rewardDiscount;
 
     return PAYMENT;
   }
@@ -199,23 +190,17 @@ class Calculator {
   }
 
   getEvent() {
-    const MENU_LIST = this.menuList;
-    const TOTAL_BEFORE_DISCOUNT = this.totalBeforeDiscount;
-    const IS_REWARD = this.isReward;
-    const BENEFIT_LIST = this.collectBenefits();
-    const TOTAL_BENEFIT = this.totalBenefit;
-    const PAYMENT = this.calculateExpectedPayment();
-    const BADGE = this.calculateBadgeEvent();
-
-    return {
-      MENU_LIST,
-      TOTAL_BEFORE_DISCOUNT,
-      IS_REWARD,
-      BENEFIT_LIST,
-      TOTAL_BENEFIT,
-      PAYMENT,
-      BADGE,
+    const EVENT = {
+      MENU_LIST: this.menuList,
+      TOTAL_BEFORE_DISCOUNT: this.totalBeforeDiscount,
+      IS_REWARD: this.isReward,
+      BENEFIT_LIST: this.collectBenefits(),
+      TOTAL_BENEFIT: this.totalBenefit,
+      PAYMENT: this.calculateExpectedPayment(),
+      BADGE: this.calculateBadgeEvent(),
     };
+
+    return EVENT;
   }
 }
 
