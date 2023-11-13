@@ -6,8 +6,8 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.intro);
   },
 
-  printSecondIntro() {
-    Console.print(OUTPUT_MESSAGE.secondIntro);
+  printSecondIntro(introMessage) {
+    Console.print(introMessage);
   },
 
   printMenu(menuMessage) {

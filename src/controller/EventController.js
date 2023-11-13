@@ -16,7 +16,7 @@ class EventController {
 
     await this.getUserInput();
 
-    OutputView.printSecondIntro();
+    this.printSecondIntro();
 
     this.setCalculator();
 
@@ -31,6 +31,12 @@ class EventController {
   setCalculator() {
     this.calculator = new Calculator(this.dateInput, this.menuInput);
     this.event = this.calculator.getEvent();
+  }
+
+  printSecondIntro() {
+    const INTRO_MESSAGE = MessageGenerator.createIntroMessage(this.dateInput);
+
+    OutputView.printSecondIntro(INTRO_MESSAGE);
   }
 
   printMenu() {

@@ -1,6 +1,12 @@
-import { UTIL_STRING, OUTPUT_MESSAGE, NUMBER } from './utils/constants.js';
+import { UTIL_STRING, OUTPUT_MESSAGE, NUMBER, OTHER_MESSAGE } from './utils/constants.js';
 
 const MessageGenerator = {
+  createIntroMessage(date) {
+    const message = `${OUTPUT_MESSAGE.secondIntro1} ${date}${OUTPUT_MESSAGE.secondIntro2}`;
+
+    return message;
+  },
+
   createMenuMessage(menuList) {
     let message = UTIL_STRING.empty;
 
