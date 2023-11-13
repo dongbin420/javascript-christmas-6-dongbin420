@@ -13,7 +13,6 @@ const OutputView = {
   printMenu(menuMessage) {
     Console.print(OUTPUT_MESSAGE.menu);
     Console.print(menuMessage);
-    // ...
   },
 
   printTotalBeforeDiscount(totalMessage) {
@@ -45,7 +44,6 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGE.badge);
     Console.print(badgeMessage);
   },
-  // ...
 };
 
 export default OutputView;

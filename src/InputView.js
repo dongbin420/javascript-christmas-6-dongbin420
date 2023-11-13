@@ -14,7 +14,6 @@ const InputView = {
         Console.print(error.message);
       }
     }
-    // ...
   },
 
   async readMenu() {
@@ -29,7 +28,6 @@ const InputView = {
       }
     }
   },
-  // ...
 };
 
 export default InputView;

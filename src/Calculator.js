@@ -70,9 +70,9 @@ class Calculator {
     if (this.userDate <= NUMBER.christmasDay) {
       const DAYS_SINCE_STRAT = this.userDate - NUMBER.eventStartDay;
 
-      // 문법 수정 필요
-      const DISCOUNT_AMOUNT =
-        NUMBER.dDayEventInitialDiscount + DAYS_SINCE_STRAT * NUMBER.dDayEventIncreasePerDay;
+      const DISCOUNT_AMOUNT = (
+        NUMBER.dDayEventInitialDiscount + DAYS_SINCE_STRAT * NUMBER.dDayEventIncreasePerDay
+      );
 
       return DISCOUNT_AMOUNT;
     }
@@ -161,7 +161,6 @@ class Calculator {
   }
 
   calculateTotalBenefit() {
-    // 문법 수정 필요
     const TOTAL =
       this.dDayDiscount +
       this.weekdayDiscount +
@@ -173,7 +172,6 @@ class Calculator {
   }
 
   calculateExpectedPayment() {
-    // 문법 수정 필요
     const PAYMENT =
       this.totalBeforeDiscount -
       this.dDayDiscount -
