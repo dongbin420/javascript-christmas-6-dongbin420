@@ -28,12 +28,14 @@ export const OUTPUT_MESSAGE = Object.freeze({
 export const OTHER_MESSAGE = Object.freeze({
   dessert: '디저트',
   mainMenu: '메인',
+  drink: '음료',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
   date: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
   dateInteger: '[ERROR] 날짜에 해당하는 정상적인 수가 아닙니다. 다시 입력해 주세요.',
   order: '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',
+  drink: '[ERROR] 음료만 주문 시, 주문이 불가능 합니다. 다시 입력해 주세요.',
 })
 
 export const MENU = Object.freeze({

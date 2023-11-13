@@ -25,6 +25,9 @@ const Validator = {
       .map((menuAndQuan) => menuAndQuan.split(UTIL_STRING.dash));
 
     Validator.validateFormat(CONVERTED_INPUT);
+
+    const MENU_ITSELF = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[0]);
+    Validator.validateMenu(MENU_ITSELF);
   },
 
   validateFormat(convertedInput) {
@@ -32,6 +35,30 @@ const Validator = {
       if (convertedInput[i].length !== 2) {
         throw new Error(ERROR_MESSAGE.order);
       }
+    }
+
+    return;
+  },
+
+  validateMenu(menu) {
+    const IS_MENU = menu.every((menu) => {
+      return Object.values(MENU).some((category) => Object.hasOwn(category, menu));
+    });
+
+    if (!IS_MENU) {
+      throw new Error(ERROR_MESSAGE.order);
+    }
+
+    const IS_DUPLICATED = new Set(menu).size !== menu.length;
+
+    if (IS_DUPLICATED) {
+      throw new Error(ERROR_MESSAGE.order);
+    }
+
+    const IS_ALL_DRINK = menu.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
+
+    if (IS_ALL_DRINK) {
+      throw new Error(ERROR_MESSAGE.drink);
     }
 
     return;
