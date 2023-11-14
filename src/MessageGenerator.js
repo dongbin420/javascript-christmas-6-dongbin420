@@ -1,4 +1,4 @@
-import { UTIL_STRING, OUTPUT_MESSAGE, NUMBER, OTHER_MESSAGE } from './utils/constants.js';
+import { UTIL_STRING, OUTPUT_MESSAGE, NUMBER } from './utils/constants.js';
 
 const MessageGenerator = {
   createIntroMessage(date) {
