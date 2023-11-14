@@ -12,7 +12,7 @@ const Validator = {
 
     Validator.validateFormat(CONVERTED_INPUT);
 
-    const QUANTITIES = CONVERTED_INPUT.map((menuAndQuan) => Number(menuAndQuan[1]));
+    const QUANTITIES = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[1]);
     const MENUS = CONVERTED_INPUT.map((menuAndQuan) => menuAndQuan[0]);
 
     Validator.validateQuantity(QUANTITIES);
@@ -44,6 +44,7 @@ const Validator = {
     const IS_MENU = menus.every((menu) => {
       return Object.values(MENU).some((category) => Object.hasOwn(category, menu));
     });
+
     const IS_DUPLICATED = new Set(menus).size !== menus.length;
     const IS_ALL_DRINK = menus.every((menu) => Object.hasOwn(MENU[OTHER_MESSAGE.drink], menu));
 
@@ -60,15 +61,11 @@ const Validator = {
     let totalQuantity = 0;
 
     for (let j = 0; j < quantities.length; j++) {
-      if (
-        Number.isNaN(quantities[j]) 
-        || quantities[j] < 1 
-        || !Number.isInteger(quantities[j])
-      ) {
+      if (Number.isNaN(Number(quantities[j])) || Number(quantities[j]) < 1 || !Number.isInteger(Number(quantities[j]))) {
         throw new Error(ERROR_MESSAGE.order);
       }
 
-      totalQuantity += quantities[j];
+      totalQuantity += Number(quantities[j]);
     }
 
     if (totalQuantity > 20) {
