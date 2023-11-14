@@ -1,10 +1,16 @@
 import Calculator from '../src/domain/Calculator.js';
 
 describe('도메인 로직 테스트', () => {
-  test('사용자가 입력한 메뉴와 개수를 객체를 이용해 리스트로 만들어야 한다.', () => {
-    const calculator = new Calculator(undefined, '타파스-1,제로콜라-1');
+  test.each([
+    ['타파스-1,제로콜라-1', { 타파스: 1, 제로콜라: 1 }],
+    [
+      '티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1',
+      { 티본스테이크: 1, 바비큐립: 1, 초코케이크: 2, 제로콜라: 1 },
+    ],
+  ])('사용자가 입력한 메뉴와 개수를 객체를 이용해 리스트로 만들어야 한다.', (input, result) => {
+    const calculator = new Calculator(undefined, input);
     const menuList = calculator.getEvent().MENU_LIST;
-    expect(menuList).toEqual({ 타파스: 1, 제로콜라: 1 });
+    expect(menuList).toEqual(result);
   });
 
   test.each([
@@ -25,16 +31,22 @@ describe('도메인 로직 테스트', () => {
     expect(isReward).toEqual(result);
   });
 
-  test('메뉴와 방문날짜 그리고 각 이벤트의 조건에 따라 혜택 내역 계산', () => {
-    const calculator = new Calculator('3', '티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1');
+  test.each([
+    ['타파스-1,제로콜라-1', false],
+    [
+      '티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1',
+      {
+        '크리스마스 디데이 할인': 1200,
+        '평일 할인': 4046,
+        '주말 할인': 0,
+        '특별 할인': 1000,
+        '증정 이벤트': 25000,
+      },
+    ],
+  ])('메뉴와 방문날짜 그리고 각 이벤트의 조건에 따라 혜택 내역 계산', (input, result) => {
+    const calculator = new Calculator('3', input);
     const benefitList = calculator.getEvent().BENEFIT_LIST;
-    expect(benefitList).toEqual({
-      '크리스마스 디데이 할인': 1200,
-      '평일 할인': 4046,
-      '주말 할인': 0,
-      '특별 할인': 1000,
-      '증정 이벤트': 25000,
-    });
+    expect(benefitList).toEqual(result);
   });
 
   test.each([
