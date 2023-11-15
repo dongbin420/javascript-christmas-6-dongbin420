@@ -19,7 +19,7 @@ const InputView = {
   async readMenu() {
     while (true) {
       try {
-        const input = await Console.readLineAsync(`${INPUT_MESSAGE.readMenu}${INPUT_MESSAGE.attention}`);
+        const input = await Console.readLineAsync(`${INPUT_MESSAGE.readMenu}${INPUT_MESSAGE.menu}${INPUT_MESSAGE.attention}`);
         Validator.validateMenuInput(input);
 
         return input;
