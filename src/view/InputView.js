@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from '../utils/constants.js';
+import { INPUT_MESSAGE } from '../utils/constants.js';
 import Validator from '../Validator.js';
 
 const InputView = {
@@ -19,7 +19,7 @@ const InputView = {
   async readMenu() {
     while (true) {
       try {
-        const input = await Console.readLineAsync(`${INPUT_MESSAGE.readMenu}${OUTPUT_MESSAGE.attention}`);
+        const input = await Console.readLineAsync(`${INPUT_MESSAGE.readMenu}${INPUT_MESSAGE.attention}`);
         Validator.validateMenuInput(input);
 
         return input;
