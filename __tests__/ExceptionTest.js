@@ -1,11 +1,17 @@
 import Validator from '../src/Validator.js';
 
 describe('예외 테스트', () => {
-  test.each(['a', '0', '-2', '32', '0.2'])('날짜 입력값 예외 테스트', (input) => {
+  test.each(['a', '0', '-2', '32'])('날짜 입력값 예외 테스트', (input) => {
     expect(() => {
       Validator.validateDateInput(input);
     }).toThrow('[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.');
   });
+
+  test('날짜 입력값 소수 테스트', () => {
+    expect(() => {
+      Validator.validateDateInput('2.2');
+    }).toThrow('[ERROR] 날짜에 해당하는 정수를 입력해야 합니다. 다시 입력해주세요.');
+  })
 
   test.each(['티본스테이크', '티본스테이크1,아이스크림1', '티본스테이크-1&아이스크림-1'])(
     '메뉴 입력값 형식 테스트',

@@ -26,9 +26,12 @@ const Validator = {
     Number.isNaN(CONVERTED_INPUT) 
     || CONVERTED_INPUT < 1 
     || CONVERTED_INPUT > 31
-    || !Number.isInteger(CONVERTED_INPUT)
     ) {
       throw new Error(ERROR_MESSAGE.date);
+    }
+
+    if (!Number.isInteger(CONVERTED_INPUT)) {
+      throw new Error(ERROR_MESSAGE.dateInteger);
     }
   },
 

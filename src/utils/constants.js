@@ -6,6 +6,7 @@ export const INPUT_MESSAGE = Object.freeze({
 export const OUTPUT_MESSAGE = Object.freeze({
   intro: '안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.',
   secondIntro1: '12월',
+  attention: '(주의사항)\n1. 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.\n2. 음료만 주문 시, 주문할 수 없습니다.\n3. 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. (e.g. 시저샐러드-1, 티본스테이크-1, 크리스마스파스타-1, 제로콜라-3, 아이스크림-1의 총개수는 7개)\n',
   secondIntro2: '일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n',
   menu: '<주문 메뉴>',
   totalBeforeDiscount: '<할인 전 총주문 금액>',
@@ -34,6 +35,7 @@ export const OTHER_MESSAGE = Object.freeze({
 
 export const ERROR_MESSAGE = Object.freeze({
   date: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
+  dateInteger: '[ERROR] 날짜에 해당하는 정수를 입력해야 합니다. 다시 입력해주세요.',
   order: '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',
   drink: '[ERROR] 음료만 주문 시, 주문이 불가능 합니다. 다시 입력해 주세요.',
   quantity: '[ERROR] 총 주문 가능 수량은 20개까지만 가능합니다! 다시 입력해 주세요.',
